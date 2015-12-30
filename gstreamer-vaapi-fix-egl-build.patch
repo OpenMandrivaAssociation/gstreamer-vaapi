@@ -1,0 +1,11 @@
+--- gstreamer-vaapi-0.6.1/configure.ac~	2015-09-23 17:19:08.000000000 +0200
++++ gstreamer-vaapi-0.6.1/configure.ac	2015-10-08 20:43:59.335394516 +0200
+@@ -165,7 +165,7 @@
+ 
+ dnl Check for GLib
+ GLIB_VERSION_REQUIRED=glib_version
+-PKG_CHECK_MODULES([GLIB], [glib-2.0 >= $GLIB_VERSION_REQUIRED])
++PKG_CHECK_MODULES([GLIB], [glib-2.0 >= $GLIB_VERSION_REQUIRED  gmodule-no-export-2.0])
+ AC_SUBST(GLIB_VERSION_REQUIRED)
+ 
+ dnl Check to see if dlopen is in default libraries (like Solaris, which

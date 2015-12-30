@@ -1,0 +1,11 @@
+diff -p -up ./configure.ac.tv ./configure.ac
+--- ./configure.ac.tv	2012-10-11 15:30:48.202152035 +0200
++++ ./configure.ac	2012-10-11 15:30:49.295234720 +0200
+@@ -135,6 +135,7 @@ AC_ARG_ENABLE(wayland,
+ 
+ dnl Check for basic libraries
+ AC_CHECK_LIB(m, tan)
++AC_CHECK_LIB(dl, dlopen)
+ 
+ dnl Check for Gtk doc
+ GTKDOC_VERSION=gtkdoc_version
