@@ -4,15 +4,13 @@
 %define devellibname %mklibname gstreamer-vaapi -d
 
 Name:		gstreamer-vaapi
-Version:	0.7.0
+Version:	1.10.2
 Release:	1
 Summary:	A collection of VA-API based plugins for GStreamer and helper libraries
 Group:		System/Libraries
 License:	LGPLv2+ and GPLv2+
 URL:		https://github.com/01org/gstreamer-vaapi
-Source0:	http://www.freedesktop.org/software/vaapi/releases/gstreamer-vaapi/%{name}-%{version}.tar.bz2
-Patch0:		gstreamer-vaapi-0.4.0-buildfix.diff
-Patch1:		gstreamer-vaapi-fix-egl-build.patch
+Source0:	http://www.freedesktop.org/software/vaapi/releases/gstreamer-vaapi/%{name}-%{version}.tar.xz
 BuildRequires:	nasm
 BuildRequires:	yasm
 BuildRequires:	gtk-doc
@@ -27,6 +25,9 @@ BuildRequires:	pkgconfig(gstreamer-codecparsers-1.0)
 BuildRequires:	pkgconfig(libavcodec)
 BuildRequires:	pkgconfig(libva)
 BuildRequires:	pkgconfig(x11)
+BuildRequires:	pkgconfig(libdrm)
+BuildRequires:	pkgconfig(libudev)
+BuildRequires:	pkgconfig(wayland-client)
 
 %description
 Gstreamer-vaapi is a collection of VA-API based plugins for GStreamer
@@ -40,7 +41,7 @@ used to display video/x-vaapi-surface surfaces to the screen.
 Summary:	Development files for %{name}
 Group:		Development/C
 Obsoletes:	gstreamer0.10-vaapi
-Obsoletes:	%mklibname gstvaapi 0.10 0
+Obsoletes:	%{mklibname gstvaapi 0.10 0}
 
 %description -n %{libname}
 Gstreamer-vaapi is a collection of VA-API based plugins for GStreamer
@@ -55,7 +56,7 @@ used to display video/x-vaapi-surface surfaces to the screen.
 Summary:	Development files for %{name}
 Group:		Development/C
 Requires:	%{libname} = %{EVRD}
-Obsoletes:      %mklibname -d gstvaapi 0.10
+Obsoletes:      %{mklibname -d gstvaapi 0.10}
 
 %description -n %{devellibname}
 The %{name}-devel package contains libraries and header files for
@@ -66,9 +67,8 @@ developing applications that use %{name}.
 %apply_patches
 
 %build
-autoreconf -vfi
 %configure
-%make V=1
+%make
 
 %install
 %makeinstall_std
@@ -77,8 +77,8 @@ autoreconf -vfi
 %doc NEWS README
 %{_libdir}/*%{api}.so.%{major}*
 %{_libdir}/gstreamer-%{api}/*.so
-%exclude %{_libdir}/gstreamer-1.0/*.a
-%exclude %{_libdir}/gstreamer-1.0/*.la
+%exclude %{_libdir}/gstreamer-%{api}/*.a
+%exclude %{_libdir}/gstreamer-%{api}/*.la
 %exclude %{_libdir}/*.a
 %exclude %{_libdir}/*.la
 
