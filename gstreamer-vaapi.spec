@@ -65,7 +65,7 @@ sed -i 's|^runpath_var=LD_RUN_PATH|runpath_var=DIE_RPATH_DIE|g' libtool
 
 %install
 %makeinstall_std
-
+rm -rf %{buildroot}/%{_datadir}/gtk-doc/
 find %{buildroot} -name "*.la" -delete
 
 %files -n %{libname}
