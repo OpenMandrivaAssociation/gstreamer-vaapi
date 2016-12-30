@@ -13,7 +13,6 @@ URL:		https://github.com/01org/gstreamer-vaapi
 Source0:	http://www.freedesktop.org/software/vaapi/releases/gstreamer-vaapi/%{name}-%{version}.tar.xz
 BuildRequires:	nasm
 BuildRequires:	yasm
-BuildRequires:	gtk-doc
 BuildRequires:	pkgconfig(gl)
 BuildRequires:	pkgconfig(glesv2)
 BuildRequires:	pkgconfig(gstreamer-1.0)
@@ -22,9 +21,11 @@ BuildRequires:	pkgconfig(gstreamer-plugins-bad-1.0)
 BuildRequires:	pkgconfig(libavcodec)
 BuildRequires:	pkgconfig(libva)
 BuildRequires:	pkgconfig(x11)
+BuildRequires:	pkgconfig(xrandr)
 BuildRequires:	pkgconfig(libdrm)
 BuildRequires:	pkgconfig(libudev)
 BuildRequires:	pkgconfig(wayland-client)
+Obsoletes:	%{mklibname gstreamer-vaapi -d} < 1.10.2
 
 %description
 Gstreamer-vaapi is a collection of VA-API based plugins for GStreamer
@@ -48,38 +49,25 @@ on the underlying HW capabilities. vaapiconvert is used to convert from
 video/x-raw-yuv pixels to video/x-vaapi-surface surfaces. vaapisink is
 used to display video/x-vaapi-surface surfaces to the screen. 
 
-
-%package -n %{devellibname}
-Summary:	Development files for %{name}
-Group:		Development/C
-Requires:	%{libname} = %{EVRD}
-Obsoletes:      %{mklibname -d gstvaapi 0.10}
-
-%description -n %{devellibname}
-The %{name}-devel package contains libraries and header files for
-developing applications that use %{name}.
-
 %prep
 %setup -q
 %apply_patches
 
 %build
-%configure
+%configure \
+    --disable-gtk-doc \
+    --disable-gtk-doc-html
+
+sed -i 's|^hardcode_libdir_flag_spec=.*|hardcode_libdir_flag_spec=""|g' libtool
+sed -i 's|^runpath_var=LD_RUN_PATH|runpath_var=DIE_RPATH_DIE|g' libtool
+
 %make
 
 %install
 %makeinstall_std
+rm -rf %{buildroot}/%{_datadir}/gtk-doc/
+find %{buildroot} -name "*.la" -delete
 
 %files -n %{libname}
 %doc NEWS README
-%{_libdir}/*%{api}.so.%{major}*
 %{_libdir}/gstreamer-%{api}/*.so
-%exclude %{_libdir}/gstreamer-%{api}/*.a
-%exclude %{_libdir}/gstreamer-%{api}/*.la
-%exclude %{_libdir}/*.a
-%exclude %{_libdir}/*.la
-
-%files -n %{devellibname}
-%{_includedir}/gstreamer-%{api}/gst/vaapi
-%{_libdir}/*.so
-%{_libdir}/pkgconfig/%{name}*.pc
