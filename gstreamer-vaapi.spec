@@ -38,7 +38,6 @@ used to display video/x-vaapi-surface surfaces to the screen.
 %package -n %{libname}
 Summary:	Development files for %{name}
 Group:		Development/C
-Requires:	%{_lib}va-drivers
 Provides:	gstreamer1.0-vaapi = %{EVRD}
 Obsoletes:	gstreamer0.10-vaapi
 Obsoletes:	%{mklibname gstvaapi 0.10 0}
