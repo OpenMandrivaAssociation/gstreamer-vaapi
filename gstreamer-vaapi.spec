@@ -5,7 +5,7 @@
 
 Name:		gstreamer-vaapi
 Version:	1.10.2
-Release:	1
+Release:	2
 Summary:	A collection of VA-API based plugins for GStreamer and helper libraries
 Group:		System/Libraries
 License:	LGPLv2+ and GPLv2+
@@ -38,6 +38,7 @@ used to display video/x-vaapi-surface surfaces to the screen.
 %package -n %{libname}
 Summary:	Development files for %{name}
 Group:		Development/C
+Requires:   %{_lib}va-drivers
 Obsoletes:	gstreamer0.10-vaapi
 Obsoletes:	%{mklibname gstvaapi 0.10 0}
 
