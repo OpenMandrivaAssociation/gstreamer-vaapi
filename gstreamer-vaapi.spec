@@ -5,7 +5,7 @@
 
 Name:		gstreamer-vaapi
 Version:	1.13.1
-Release:	1
+Release:	2
 Summary:	A collection of VA-API based plugins for GStreamer and helper libraries
 Group:		System/Libraries
 License:	LGPLv2+ and GPLv2+
