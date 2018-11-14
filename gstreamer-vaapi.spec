@@ -4,13 +4,13 @@
 %define devellibname %mklibname gstreamer-vaapi -d
 
 Name:		gstreamer-vaapi
-Version:	1.13.1
-Release:	2
+Version:	1.14.4
+Release:	1
 Summary:	A collection of VA-API based plugins for GStreamer and helper libraries
 Group:		System/Libraries
 License:	LGPLv2+ and GPLv2+
-URL:		https://github.com/01org/gstreamer-vaapi
-Source0:	http://www.freedesktop.org/software/vaapi/releases/gstreamer-vaapi/%{name}-%{version}.tar.xz
+URL:		https://gstreamer.freedesktop.org/modules/gstreamer-vaapi.html
+Source0:	https://gstreamer.freedesktop.org/src/gstreamer-vaapi/%{name}-%{version}.tar.xz
 BuildRequires:	nasm
 BuildRequires:	yasm
 BuildRequires:	pkgconfig(gl)
@@ -51,8 +51,7 @@ video/x-raw-yuv pixels to video/x-vaapi-surface surfaces. vaapisink is
 used to display video/x-vaapi-surface surfaces to the screen. 
 
 %prep
-%setup -q
-%apply_patches
+%autosetup -p1
 
 %build
 %configure \
@@ -62,10 +61,10 @@ used to display video/x-vaapi-surface surfaces to the screen.
 sed -i 's|^hardcode_libdir_flag_spec=.*|hardcode_libdir_flag_spec=""|g' libtool
 sed -i 's|^runpath_var=LD_RUN_PATH|runpath_var=DIE_RPATH_DIE|g' libtool
 
-%make
+%make_build
 
 %install
-%makeinstall_std
+%make_install
 rm -rf %{buildroot}/%{_datadir}/gtk-doc/
 find %{buildroot} -name "*.la" -delete
 
