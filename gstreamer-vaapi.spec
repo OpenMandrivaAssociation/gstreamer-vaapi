@@ -11,24 +11,24 @@ Group:		System/Libraries
 License:	LGPLv2+ and GPLv2+
 URL:		https://gstreamer.freedesktop.org/modules/gstreamer-vaapi.html
 Source0:	https://gstreamer.freedesktop.org/src/gstreamer-vaapi/%{name}-%{version}.tar.xz
-BuildRequires:  meson
-BuildRequires:	nasm
-BuildRequires:	yasm
-BuildRequires:	pkgconfig(gl)
-BuildRequires:	pkgconfig(glesv2)
-BuildRequires:	pkgconfig(gstreamer-1.0)
-BuildRequires:	pkgconfig(gstreamer-plugins-base-1.0)
-BuildRequires:	pkgconfig(gstreamer-plugins-bad-1.0)
-BuildRequires:	pkgconfig(gstreamer-codecparsers-1.0)
-BuildRequires:	pkgconfig(libavcodec)
-BuildRequires:	pkgconfig(libva)
-BuildRequires:       pkgconfig(gtk+-3.0)
-BuildRequires:	pkgconfig(x11)
-BuildRequires:	pkgconfig(xrandr)
-BuildRequires:	pkgconfig(libdrm)
-BuildRequires:	pkgconfig(libudev)
-BuildRequires:	pkgconfig(wayland-client)
-BuildRequires:       pkgconfig(wayland-protocols)
+BuildRequires: meson
+BuildRequires: nasm
+BuildRequires: yasm
+BuildRequires: pkgconfig(gl)
+BuildRequires: pkgconfig(glesv2)
+BuildRequires: pkgconfig(gstreamer-1.0)
+BuildRequires: pkgconfig(gstreamer-plugins-base-1.0)
+BuildRequires: pkgconfig(gstreamer-plugins-bad-1.0)
+BuildRequires: pkgconfig(gstreamer-codecparsers-1.0)
+BuildRequires: pkgconfig(libavcodec)
+BuildRequires: pkgconfig(libva)
+BuildRequires: pkgconfig(gtk+-3.0)
+BuildRequires: pkgconfig(x11)
+BuildRequires: pkgconfig(xrandr)
+BuildRequires: pkgconfig(libdrm)
+BuildRequires: pkgconfig(libudev)
+BuildRequires: pkgconfig(wayland-client)
+BuildRequires: pkgconfig(wayland-protocols)
 Obsoletes:	%{mklibname gstreamer-vaapi -d} < 1.10.2
 
 %description
@@ -60,8 +60,12 @@ used to display video/x-vaapi-surface surfaces to the screen.
 %build
 %meson \
        -Ddoc=disabled \
-       -Dwith_encoders=yes
-       
+       -Dwith_encoders=yes \
+       -Dwith_drm=yes \
+       -Dwith_x11=yes \
+       -Dwith_glx=yes \
+       -Dwith_wayland=yes \
+       -Dwith_egl=yes
 
 #sed -i 's|^hardcode_libdir_flag_spec=.*|hardcode_libdir_flag_spec=""|g' libtool
 #sed -i 's|^runpath_var=LD_RUN_PATH|runpath_var=DIE_RPATH_DIE|g' libtool
