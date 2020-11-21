@@ -4,13 +4,14 @@
 %define devellibname %mklibname gstreamer-vaapi -d
 
 Name:		gstreamer-vaapi
-Version:	1.16.2
+Version:	1.18.1
 Release:	1
 Summary:	A collection of VA-API based plugins for GStreamer and helper libraries
 Group:		System/Libraries
 License:	LGPLv2+ and GPLv2+
 URL:		https://gstreamer.freedesktop.org/modules/gstreamer-vaapi.html
 Source0:	https://gstreamer.freedesktop.org/src/gstreamer-vaapi/%{name}-%{version}.tar.xz
+BuildRequires:  meson
 BuildRequires:	nasm
 BuildRequires:	yasm
 BuildRequires:	pkgconfig(gl)
@@ -55,17 +56,18 @@ used to display video/x-vaapi-surface surfaces to the screen.
 %autosetup -p1
 
 %build
-%configure \
-    --disable-gtk-doc \
-    --disable-gtk-doc-html
+%meson \
+       -Ddoc=disabled \
+       -Dwith_encoders=yes
+       
 
-sed -i 's|^hardcode_libdir_flag_spec=.*|hardcode_libdir_flag_spec=""|g' libtool
-sed -i 's|^runpath_var=LD_RUN_PATH|runpath_var=DIE_RPATH_DIE|g' libtool
+#sed -i 's|^hardcode_libdir_flag_spec=.*|hardcode_libdir_flag_spec=""|g' libtool
+#sed -i 's|^runpath_var=LD_RUN_PATH|runpath_var=DIE_RPATH_DIE|g' libtool
 
-%make_build
+%meson_build
 
 %install
-%make_install
+%meson_install
 rm -rf %{buildroot}/%{_datadir}/gtk-doc/
 find %{buildroot} -name "*.la" -delete
 
