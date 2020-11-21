@@ -22,11 +22,13 @@ BuildRequires:	pkgconfig(gstreamer-plugins-bad-1.0)
 BuildRequires:	pkgconfig(gstreamer-codecparsers-1.0)
 BuildRequires:	pkgconfig(libavcodec)
 BuildRequires:	pkgconfig(libva)
+BuildRequires:       pkgconfig(gtk+-3.0)
 BuildRequires:	pkgconfig(x11)
 BuildRequires:	pkgconfig(xrandr)
 BuildRequires:	pkgconfig(libdrm)
 BuildRequires:	pkgconfig(libudev)
 BuildRequires:	pkgconfig(wayland-client)
+BuildRequires:       pkgconfig(wayland-protocols)
 Obsoletes:	%{mklibname gstreamer-vaapi -d} < 1.10.2
 
 %description
