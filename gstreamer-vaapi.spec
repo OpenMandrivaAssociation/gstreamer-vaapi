@@ -59,13 +59,15 @@ used to display video/x-vaapi-surface surfaces to the screen.
 
 %build
 %meson \
+       -Dwith-package-name='OpenMandriva %{name} %{version}-%{release}' \
        -Ddoc=disabled \
        -Dwith_encoders=yes \
        -Dwith_drm=yes \
        -Dwith_x11=yes \
        -Dwith_glx=yes \
        -Dwith_wayland=yes \
-       -Dwith_egl=yes
+       -Dwith_egl=yes \
+       --buildtype=release
 
 #sed -i 's|^hardcode_libdir_flag_spec=.*|hardcode_libdir_flag_spec=""|g' libtool
 #sed -i 's|^runpath_var=LD_RUN_PATH|runpath_var=DIE_RPATH_DIE|g' libtool
