@@ -59,7 +59,6 @@ used to display video/x-vaapi-surface surfaces to the screen.
 
 %build
 %meson \
-       -Dwith-package-name='OpenMandriva %{name} %{version}-%{release}' \
        -Ddoc=disabled \
        -Dwith_encoders=yes \
        -Dwith_drm=yes \
