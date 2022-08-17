@@ -4,7 +4,7 @@
 %define devellibname %mklibname gstreamer-vaapi -d
 
 Name:		gstreamer-vaapi
-Version:	1.20.0
+Version:	1.20.3
 Release:	1
 Summary:	A collection of VA-API based plugins for GStreamer and helper libraries
 Group:		System/Libraries
