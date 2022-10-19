@@ -54,6 +54,14 @@ on the underlying HW capabilities. vaapiconvert is used to convert from
 video/x-raw-yuv pixels to video/x-vaapi-surface surfaces. vaapisink is
 used to display video/x-vaapi-surface surfaces to the screen. 
 
+%package -n %{devellibname}
+Summary:	Libraries and include files for GStreamer streaming-media framework
+Group:		Development/C
+Requires:	%{libname} = %{EVRD}
+
+%description -n %{devellibname}
+Development files for gstreamer-vaapi.
+
 %prep
 %autosetup -p1
 
@@ -81,3 +89,6 @@ find %{buildroot} -name "*.la" -delete
 %files -n %{libname}
 %doc NEWS README
 %{_libdir}/gstreamer-%{api}/*.so
+
+%files -n %{devellibname}
+%{_libdir}/gstreamer-%{api}gstreamer-1.0/pkgconfig/gstvaapi.pc
