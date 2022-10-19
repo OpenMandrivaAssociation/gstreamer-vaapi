@@ -60,7 +60,7 @@ used to display video/x-vaapi-surface surfaces to the screen.
 %build
 %meson \
        -Ddoc=disabled \
-       -Dencoders=yes \
+       -Dencoders=enabled \
        -Ddrm=yes \
        -Dx11=yes \
        -Dglx=yes \
