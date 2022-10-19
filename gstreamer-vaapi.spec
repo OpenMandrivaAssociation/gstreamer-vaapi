@@ -61,11 +61,11 @@ used to display video/x-vaapi-surface surfaces to the screen.
 %meson \
        -Ddoc=disabled \
        -Dencoders=enabled \
-       -Ddrm=yes \
-       -Dx11=yes \
-       -Dglx=yes \
-       -Dwayland=yes \
-       -Degl=yes \
+       -Ddrm=enabled \
+       -Dx11=enabled \
+       -Dglx=enabled \
+       -Dwayland=enabled \
+       -Degl=enabled \
        --buildtype=release
 
 #sed -i 's|^hardcode_libdir_flag_spec=.*|hardcode_libdir_flag_spec=""|g' libtool
