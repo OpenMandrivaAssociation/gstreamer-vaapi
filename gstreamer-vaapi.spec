@@ -91,4 +91,4 @@ find %{buildroot} -name "*.la" -delete
 %{_libdir}/gstreamer-%{api}/*.so
 
 %files -n %{devellibname}
-%{_libdir}/gstreamer-%{api}gstreamer-1.0/pkgconfig/gstvaapi.pc
+%{_libdir}/gstreamer-%{api}/pkgconfig/gstvaapi.pc
