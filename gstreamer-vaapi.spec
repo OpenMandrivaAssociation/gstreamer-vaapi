@@ -4,7 +4,7 @@
 %define devellibname %mklibname gstreamer-vaapi -d
 
 Name:		gstreamer-vaapi
-Version:	1.22.0
+Version:	1.22.1
 Release:	1
 Summary:	A collection of VA-API based plugins for GStreamer and helper libraries
 Group:		System/Libraries
@@ -84,11 +84,8 @@ Development files for gstreamer-vaapi.
 %install
 %meson_install
 rm -rf %{buildroot}/%{_datadir}/gtk-doc/
-find %{buildroot} -name "*.la" -delete
 
 %files -n %{libname}
 %doc NEWS README
 %{_libdir}/gstreamer-%{api}/*.so
 
-%files -n %{devellibname}
-%{_libdir}/gstreamer-%{api}/pkgconfig/gstvaapi.pc
